@@ -1,0 +1,290 @@
+{
+    "name": "pipelineTest",
+    "properties": {
+        "activities": [
+            {
+                "name": "pl_ingest_corporate_tickets",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "DelimitedTextSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true,
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "DelimitedTextReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "AzurePostgreSqlSink",
+                        "writeBatchSize": 1000000,
+                        "writeBatchTimeout": "00:30:00",
+                        "preCopyScript": "TRUNCATE TABLE fact_compliance_tickets CASCADE;",
+                        "writeMethod": "CopyCommand"
+                    },
+                    "enableStaging": false,
+                    "translator": {
+                        "type": "TabularTranslator",
+                        "mappings": [
+                            {
+                                "source": {
+                                    "name": "ticket_id",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "ticket_id",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "employee_id",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "employee_id",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "issue_type",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "issue_type",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "severity",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "severity",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "status",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "status",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "created_date",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "created_date",
+                                    "type": "DateTime",
+                                    "physicalType": "date"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "resolved_date",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "resolved_date",
+                                    "type": "DateTime",
+                                    "physicalType": "date"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "risk_score",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "risk_score",
+                                    "type": "Int32",
+                                    "physicalType": "integer"
+                                }
+                            }
+                        ],
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                            "allowDataTruncation": true,
+                            "treatBooleanAsNumber": false
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "referenceName": "ticketsRaw",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "ds_sql_tickets",
+                        "type": "DatasetReference"
+                    }
+                ]
+            },
+            {
+                "name": "pl_ingest_employees",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "DelimitedTextSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true,
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "DelimitedTextReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "AzurePostgreSqlSink",
+                        "writeBatchSize": 1000000,
+                        "writeBatchTimeout": "00:30:00",
+                        "preCopyScript": "TRUNCATE TABLE dim_employees CASCADE;",
+                        "writeMethod": "CopyCommand"
+                    },
+                    "enableStaging": false,
+                    "translator": {
+                        "type": "TabularTranslator",
+                        "mappings": [
+                            {
+                                "source": {
+                                    "name": "employee_id",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "employee_id",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "first_name",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "first_name",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "last_name",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "last_name",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "department",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "department",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "region",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "region",
+                                    "type": "String",
+                                    "physicalType": "character varying"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "hire_date",
+                                    "type": "String",
+                                    "physicalType": "String"
+                                },
+                                "sink": {
+                                    "name": "hire_date",
+                                    "type": "DateTime",
+                                    "physicalType": "date"
+                                }
+                            }
+                        ],
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                            "allowDataTruncation": true,
+                            "treatBooleanAsNumber": false
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "referenceName": "ds_source_employees",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "ds_sql_employees",
+                        "type": "DatasetReference"
+                    }
+                ]
+            }
+        ],
+        "annotations": [],
+        "lastPublishTime": "2026-06-12T14:56:41Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
