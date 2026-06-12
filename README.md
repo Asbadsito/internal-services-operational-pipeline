@@ -55,3 +55,19 @@ Data ingestion is completely automated. Azure Data Factory manages the control f
 ### 4. Relational Data Warehouse (Azure Database for PostgreSQL)
 The final sink for the corporate records is a cloud-hosted PostgreSQL database. 
 
+
+### 5. Automated Data Transformation & Cleansing Layer (ELT Pattern)
+Rather than relying on manual desktop tools like Excel or external SQL editors to clean the data after ingestion, the pipeline utilizes a true cloud-native ELT (Extract, Load, Transform) approach. 
+
+A Data Factory **Script Activity** is sequenced to trigger automatically the exact second both copy routines successfully complete. This step executes a serverless SQL transformation script directly inside the database engine, cleaning raw fields and generating high-performance analytical database views (`v_clean_employees` and `v_compliance_ticket_metrics`) on the fly.
+
+* **Automated Post-Load Cleansing Workflow:** Demonstrates the dependency chain where raw data is cleaned inside the cloud warehouse immediately upon landing.
+  ![Automated SQL Data Cleansing Activity](azure-infrastructure/images/data_cleaning_script.png)
+
+---
+
+## 📊 Final Phase: Live Power BI Dashboard Connect
+
+With the data fully ingested, schema-validated, and automatically cleaned, the architecture completely decouples data processing from data presentation. 
+
+By connecting Power BI Desktop directly to the secure cloud PostgreSQL database, reporting models bypass the raw base tables entirely. Instead, they ingest the pre-calculated, performance-optimized SQL Views (`v_clean_employees` and `v_compliance_ticket_metrics`). This structural design guarantees that the executive governance graphs render instantly and stay up-to-date automatically whenever the pipeline triggers.
