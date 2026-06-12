@@ -31,3 +31,26 @@ To bypass global permission boundaries within the shared cloud terminal instance
 ```bash
 pip install pandas faker --user
 
+```
+
+## 2. Data Lake Landing Zone (ADLS Gen2)
+The raw output files are sent straight to an Azure Data Lake Gen2 container workspace. The storage folders are organized to separate incoming operational files from processing runs.
+
+* **High-Level Container Storage Topology:** Demonstrates clean system segregation between internal business directories.
+  ![Azure Data Lake Root Topology](azure-infrastructure/images/azure_data_lake1.png)
+
+* **Raw Landing Folder Repository:** Displays the custom Python-generated files sitting securely inside the targeted directory, awaiting ingestion.
+  ![Azure Data Lake Raw Target Zone](azure-infrastructure/images/azure_data_lake2.png)
+
+### 3. Serverless Orchestration Engine (Azure Data Factory)
+Data ingestion is completely automated. Azure Data Factory manages the control flows, handling connections across storage boundaries while enforcing relational constraints.
+
+* **Ingestion Pipelines Layout:** The `pl_ingest_corporate_tickets` orchestration canvas demonstrates independent copy data activities routing individual incoming source feeds.
+  ![Azure Data Factory Orchestration Canvas](azure-infrastructure/images/azure_data_factory.png)
+
+* **Schema Alignment & Mapping Constraints:** Explicit data modeling rules ensure source string variables automatically convert to lowercase structured relational formats inside the PostgreSQL database without throwing errors.
+  ![ADF Source to Sink Columns Mapping](azure-infrastructure/images/mapping.png)
+
+### 4. Relational Data Warehouse (Azure Database for PostgreSQL)
+The final sink for the corporate records is a cloud-hosted PostgreSQL database. 
+
