@@ -1,0 +1,16 @@
+TicketID,EmployeeID,RequestCategory,Priority,OpenDate,ResolveDate,RiskRating,CostToResolve
+TCK-801,EMP001,Contract Review,High,2026-01-10,2026-01-12,5,350.00
+TCK-802,EMP003,GDPR Data Request,Medium,2026-01-15,2026-01-15,3,0.00
+TCK-803,EMP002,Software Provisioning,Critical,2026-02-01,,4,120.00
+TCK-804,EMP005,Background Vetting,Low,2026-02-10,2026-02-14,1,0.00
+TCK-805,EMP001,IP Audit,Critical,2026-03-01,,5,1200.00
+TCK-806,EMP004,GDPR Data Request,Low,2026-03-12,2026-03-13,2,45.00
+TCK-807,EMP002,Contract Review,Medium,2026-03-15,2026-03-22,3,450.00
+TCK-808,EMP006,Policy Exception,High,2026-03-20,2026-03-21,4,150.00
+TCK-809,EMP007,GDPR Data Request,High,2026-04-02,,4,0.00
+TCK-810,EMP008,Contract Review,Critical,2026-04-05,2026-04-07,5,850.00
+TCK-811,EMP003,Background Vetting,Medium,2026-04-12,2026-04-18,2,75.00
+TCK-812,EMP005,Software Provisioning,Low,2026-04-20,,1,0.00
+TCK-813,EMP001,IP Audit,High,2026-05-01,2026-05-05,4,600.00
+TCK-814,EMP006,Contract Review,Medium,2026-05-10,2026-05-11,3,200.00
+TCK-815,EMP004,Policy Exception,Critical,2026-05-15,,5,950.00
