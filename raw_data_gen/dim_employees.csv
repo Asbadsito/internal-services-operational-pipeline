@@ -1,1 +1,9 @@
-
+EmployeeID,EmployeeName,Department,OfficeLocation,CorporateTier,HourlyRate
+EMP001,Alexander Wright,Legal Operations,London,Senior,150
+EMP002,Beatriz Gomez,Finance,Manchester,Junior,90
+EMP003,Charles Morgan,Compliance,Birmingham,Senior,140
+EMP004,Daria Petrov,Risk Management,Leeds,Mid-Level,115
+EMP005,Ethan Gallagher,Human Resources,London,Senior,130
+EMP006,Fiona Gallagher,Legal Operations,London,Mid-Level,120
+EMP007,George Brooks,Compliance,Manchester,Junior,85
+EMP008,Hannah Abbott,Risk Management,Birmingham,Senior,145
