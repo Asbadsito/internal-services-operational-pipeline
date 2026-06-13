@@ -4,7 +4,7 @@ An Internal Corporate Operations &amp; Legal Tech Pipeline. Instead of standard 
 In other words, just a simple business internal automation project for displaying Data in a Power Bi dashboard for further analysis , using Azure Data Lake as an environment to store the raw data, then ADF to filter it directly to a cloud based relational PostgreSQL database used to build the final dashboard.
 The built dashboard is included in this project, view the image below: 
 
-## 📌 Project Overview & Business Value
+## Project Overview & Business Value
 
 In modern enterprise operations, tracking internal compliance infractions (such as GDPR data breaches, insider trading alerts, and AML risks) requires rigid audit trails. Manual data gathering or loose desktop file tracking results in broken links, truncated strings, and reporting lag.
 
@@ -12,7 +12,7 @@ This project is a personal small practise for me,  by establishing a secure clou
 
 ---
 
-## 🛠️ System Architecture
+## System Architecture
 
 The core topology relies entirely on cloud-based infrastructure to handle heavy data scaling effortlessly:
 
@@ -23,7 +23,7 @@ The core topology relies entirely on cloud-based infrastructure to handle heavy 
 
 ---
 
-## ⚙️ Engineering Walkthrough & Cloud Implementation
+## Engineering Walkthrough & Cloud Implementation
 
 ### 1. Simulated Data Generation (Azure Cloud Shell)
 Rather than executing extraction logic on a local machine, a custom data script (`generate_data.py`) was executed directly inside the **Azure Cloud Shell** bash terminal environment. 
@@ -64,7 +64,7 @@ A Data Factory **Script Activity** is sequenced to trigger automatically the exa
 Now the data inside the database in the cloud will store the cleaned data
 ---
 
-## 📊 Final Phase: Live Power BI Dashboard Connect
+## Final Phase: Live Power BI Dashboard Connect
 
 With the data fully ingested, schema-validated, and automatically cleaned, the architecture completely decouples data processing from data presentation. 
 
