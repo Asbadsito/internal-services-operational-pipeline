@@ -4,6 +4,10 @@ An Internal Corporate Operations &amp; Legal Tech Pipeline. Instead of standard 
 In other words, just a simple business internal automation project for displaying Data in a Power Bi dashboard for further analysis , using Azure Data Lake as an environment to store the raw data, then ADF to filter it directly to a cloud based relational PostgreSQL database used to build the final dashboard.
 The built dashboard is included in this project, it is a dynamic dashboard that uses real-time data from the cloud , view the gif below: 
 
+![Enterprise Compliance Dashboard Performance Demo](dashboards_reports/dashboard-demo.gif)
+
+
+
 ## Project Overview & Business Value
 
 In modern enterprise operations, tracking internal compliance infractions (such as GDPR data breaches, insider trading alerts, and AML risks) requires rigid audit trails. Manual data gathering or loose desktop file tracking results in broken links, truncated strings, and reporting lag.
