@@ -60,7 +60,7 @@ Data ingestion is completely automated. Azure Data Factory manages the control f
 
 To verify schema creation and initial data seeding before constructing the presentation layer, the data warehouse state was audited directly via the PostgreSQL terminal. This snapshot confirms the underlying physical tables are populated and structurally sound within the cloud instance.
 
-![Azure PostgreSQL Database Terminal](azure_infrastructure/azure_postgres2.png)
+![Azure PostgreSQL Database Terminal](azure-infrastructure/images/azure_postgres2.png)
 
 
 ### 4. Automated Data Transformation & Cleansing Layer (ELT Pattern)
