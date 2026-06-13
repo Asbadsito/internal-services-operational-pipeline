@@ -56,6 +56,12 @@ Data ingestion is completely automated. Azure Data Factory manages the control f
 * **Schema Alignment & Mapping Constraints:** Explicit data modeling rules ensure source string variables automatically convert to lowercase structured relational formats inside the PostgreSQL database without throwing errors.
   ![ADF Source to Sink Columns Mapping](azure-infrastructure/images/mapping.png)
 
+  ### Database State Verification
+
+To verify schema creation and initial data seeding before constructing the presentation layer, the data warehouse state was audited directly via the PostgreSQL terminal. This snapshot confirms the underlying physical tables are populated and structurally sound within the cloud instance.
+
+![Azure PostgreSQL Database Terminal](azure_infrastructure/azure_postgres2.png)
+
 
 ### 4. Automated Data Transformation & Cleansing Layer (ELT Pattern)
 Rather than relying on manual desktop tools like Excel or external SQL editors to clean the data after ingestion, the pipeline utilizes a true cloud-native ELT (Extract, Load, Transform) approach. 
