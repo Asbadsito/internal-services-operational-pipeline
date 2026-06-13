@@ -63,8 +63,8 @@ To verify schema creation and initial data seeding before constructing the prese
 ![Azure PostgreSQL Database Terminal](azure-infrastructure/images/azure_postgres2.png)
 
 
-### 4. Automated Data Transformation & Cleansing Layer (ELT Pattern)
-Rather than relying on manual desktop tools like Excel or external SQL editors to clean the data after ingestion, the pipeline utilizes a true cloud-native ELT (Extract, Load, Transform) approach. 
+### 4. Automated Data Transformation & Cleansing Layer 
+Rather than relying on manual desktop tools like Excel or external SQL editors to clean the data after ingestion, the pipeline utilizes a true cloud-native ELT approach. 
 
 A Data Factory **Script Activity** is sequenced to trigger automatically the exact second both copy routines successfully complete. This step executes a serverless SQL transformation script directly inside the database engine, cleaning raw fields and generating high-performance analytical database views (`v_clean_employees` and `v_compliance_ticket_metrics`) on the fly.
 Now the DATA INSIDE the cloud database will store the CLEANED data in form of views.
