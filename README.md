@@ -69,3 +69,27 @@ Now the data inside the database in the cloud will store the cleaned data
 With the data fully ingested, schema-validated, and automatically cleaned, the architecture completely decouples data processing from data presentation. 
 
 By connecting Power BI Desktop directly to the secure cloud PostgreSQL database, reporting models bypass the raw base tables entirely. Instead, they ingest the pre-calculated, performance-optimized SQL Views (`v_clean_employees` and `v_compliance_ticket_metrics`). This structural design guarantees that the executive governance graphs render instantly and stay up-to-date automatically whenever the pipeline triggers.
+
+## Business Intelligence Layer & Live Data Architecture
+
+To serve enterprise stakeholders without degrading the core data engineering ingestion performance, this architecture isolates transformations from the data movement layer. Instead of executing heavy, permanent data cleaning scripts during ingestion, the system utilizes an optimized, server-side computing layout.
+
+### Automated Cloud Pipeline & Virtual Storage Optimization
+
+1. **Pipeline Execution Logic:** Upon the successful completion of the ingestion tasks inside the Azure Data Factory (ADF) pipeline, the control flow instantly triggers the connected SQL Script activity. This ensures backend data normalization executes immediately after raw tables are populated.
+2. **Server-Side Virtual Tables:** The script deploys server-side `CREATE OR REPLACE VIEW` commands to build `v_clean_employees` and `v_compliance_ticket_metrics`. Because database views are virtual schemas, they contain zero physical data records and require **0MB of permanent database storage space**, acting purely as a saved query execution plan.
+3. **On-Demand Data Transformation:** Power BI Desktop establishes a live pipeline to these SQL views utilizing **DirectQuery Mode**, maintaining zero local data footprint. The exact microsecond a stakeholder interacts with a visual component, Power BI passes an on-the-fly query down to the Azure Database for PostgreSQL engine. The database processes the view's logical rules—dynamically applying functions like `COALESCE` to eliminate nulls and calculating the age of compliance tickets in real time—before streaming the clean dataset back to the UI layout.
+
+> **Deployment Note:** Due to Power BI cloud hosting governance requiring an active enterprise or organizational email domain to publish publicly, this report cannot be directly embedded. Please refer to the looping GIF at the top of the main repository page to see the dynamic cross-filtering features working
+
+### Database View Relations Schema
+
+Configuring structural relationships at the server catalog level allows the analytical environment to recognize schema integrity natively. This ensures that cross-filtering actions executed across disparate views sync uniformly across the data model.
+
+![Data Model View Schema](dashboards_reports/views_relation.png)
+
+### Core Executive Intelligence Brief
+
+The final analytics canvas delivers multi-dimensional, native cross-filtering. Selecting a specific operational vulnerability, geographic region, or risk category dynamically recalibrates high-level KPI blocks and performance matrices in real time.
+
+![Executive Compliance Dashboard](dashboards_reports/report_tickets.png)
